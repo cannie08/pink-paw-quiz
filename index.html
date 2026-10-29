@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#fff0f6">
+<meta name="description" content="一个轻松可爱的趣味人格小测试，看看你的隐藏小狗属性有多少！">
+<title>你是不是狗狗？🐾 趣味小测试</title>
+<style>
+:root{--pink:#ff78ad;--deep:#d94c88;--pale:#fff0f6;--ink:#573647;--muted:#98798a;--white:#fff;--line:#ffe0ec}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:var(--ink);background:radial-gradient(circle at 12% 12%,#ffe0ee 0 2px,transparent 3px),radial-gradient(circle at 88% 30%,#ffd7e8 0 3px,transparent 4px),linear-gradient(145deg,#fff8fb,#ffeaf3 55%,#fff4f8);background-size:44px 44px,58px 58px,auto;display:flex;align-items:center;justify-content:center;padding:24px 14px}
+.wrap{width:min(100%,720px);position:relative}
+.topline{display:flex;justify-content:space-between;align-items:center;margin:0 4px 14px;font-size:13px;color:var(--muted);letter-spacing:.04em}
+.brand{font-weight:800;color:var(--deep)}
+.card{background:rgba(255,255,255,.92);border:1px solid #fff;box-shadow:0 20px 60px #df7fa52b;border-radius:30px;padding:clamp(24px,6vw,48px);overflow:hidden;position:relative}
+.card:before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:#fff0f6;right:-75px;top:-85px;z-index:0}
+.content{position:relative;z-index:1}
+.hero{text-align:center}
+.emoji{font-size:72px;line-height:1.2;filter:drop-shadow(0 8px 5px #e77ba526)}
+.pill{display:inline-block;border-radius:999px;padding:7px 13px;background:#fff0f6;color:#c94c84;font-size:12px;font-weight:800;letter-spacing:.08em;margin:12px 0}
+h1{font-size:clamp(29px,7vw,44px);line-height:1.2;margin:7px 0 14px;letter-spacing:-.04em}
+p{line-height:1.8;color:var(--muted);margin:0 auto 20px;max-width:480px}
+.btn{border:0;border-radius:16px;background:linear-gradient(135deg,#ff8fba,#f45d9c);color:white;font-weight:800;font-size:16px;padding:15px 24px;cursor:pointer;box-shadow:0 9px 20px #f45d9c36;transition:transform .15s,filter .15s}
+.btn:hover{filter:saturate(1.08);transform:translateY(-2px)}
+.btn:focus-visible,.option:focus-visible{outline:3px solid #d94c88;outline-offset:3px}
+.btn.secondary{background:#fff0f6;color:#c94c84;box-shadow:none}
+.decor{position:absolute;font-size:24px;opacity:.8}
+.d1{left:20px;top:20px}.d2{right:22px;bottom:22px}
+.hidden{display:none!important}
+.progress-head{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:10px;font-weight:700}
+.track{height:8px;background:#ffedf4;border-radius:99px;overflow:hidden;margin-bottom:28px}
+.fill{height:100%;width:0;background:linear-gradient(90deg,#ffb1d0,#f45d9c);border-radius:99px;transition:width .25s}
+.question-kicker{font-size:12px;color:var(--deep);font-weight:900;letter-spacing:.12em;margin-bottom:8px}
+h2{font-size:clamp(23px,5vw,30px);line-height:1.4;margin:0 0 22px}
+.options{display:grid;gap:12px}
+.option{width:100%;text-align:left;border:1.5px solid var(--line);background:#fffafd;color:var(--ink);border-radius:17px;padding:15px 16px;font-size:15px;line-height:1.55;cursor:pointer;transition:all .16s;display:flex;align-items:center;gap:12px}
+.option:hover{border-color:#ff9ec5;background:#fff3f8;transform:translateY(-1px)}
+.option .letter{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border-radius:12px;background:#ffedf4;color:#d94c88;font-weight:900}
+.option.selected{border-color:#f45d9c;background:#fff0f6;box-shadow:0 0 0 3px #f45d9c14}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
+.nav .btn{font-size:14px;padding:12px 18px}
+.result{text-align:center}
+.result .emoji{font-size:80px}
+.score{font-size:clamp(44px,10vw,64px);font-weight:950;letter-spacing:-.06em;color:var(--deep);line-height:1.1;margin:10px 0}
+.score small{font-size:18px;letter-spacing:0}
+.result-box{margin:22px 0;background:#fff5f9;border:1px solid #ffe0ec;border-radius:20px;padding:20px;text-align:left}
+.result-box h3{margin:0 0 8px;font-size:17px}
+.result-box p{margin:0;color:#806275}
+.tags{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:16px 0 24px}
+.tag{background:#fff0f6;color:#c94c84;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:800}
+.footer{text-align:center;font-size:12px;color:#b38da0;margin:15px 8px 0}
+.sparkle{color:#f45d9c}
+@media(max-width:420px){.card{border-radius:24px}.nav .btn{padding:12px 14px}.emoji{font-size:62px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="topline"><span class="brand">♡ PINK PAW CLUB</span><span>轻松一下 · 趣味测试</span></div>
+  <section class="card">
+    <span class="decor d1">✦</span><span class="decor d2">♡</span>
+    <div class="content">
+      <section id="start" class="hero">
+        <div class="emoji" aria-hidden="true">🐶💗</div>
+        <span class="pill">A LITTLE FUN TEST</span>
+        <h1>你是不是狗狗？</h1>
+        <p>别紧张！这不是严肃的鉴定现场，而是一份可爱到冒泡的趣味小测试。<br>测测你身上的“狗狗属性”有多少吧～</p>
+        <div class="tags"><span class="tag">🐾 8道小题</span><span class="tag">🎀 粉色治愈</span><span class="tag">💌 即时结果</span></div>
+        <button class="btn" id="startBtn">开始测试　→</button>
+      </section>
+      <section id="quiz" class="hidden" aria-live="polite">
+        <div class="progress-head"><span id="stepLabel">QUESTION 01 / 08</span><span id="answered">已完成 0%</span></div>
+        <div class="track"><div class="fill" id="progress"></div></div>
+        <div class="question-kicker">PICK WHAT FEELS LIKE YOU ✿</div>
+        <h2 id="question">题目</h2>
+        <div class="options" id="options"></div>
+        <div class="nav"><button class="btn secondary" id="backBtn">← 上一题</button><button class="btn" id="nextBtn" disabled>下一题 →</button></div>
+      </section>
+      <section id="result" class="result hidden" aria-live="polite">
+        <div class="emoji" id="resultEmoji">🐶</div>
+        <span class="pill">YOUR PAWSONALITY</span>
+        <h1 id="resultTitle">结果标题</h1>
+        <div class="score"><span id="score">0</span><small> / 100 狗狗指数</small></div>
+        <p id="resultIntro"></p>
+        <div class="result-box"><h3>💌 你的专属小评语</h3><p id="resultDetail"></p></div>
+        <div class="tags" id="resultTags"></div>
+        <button class="btn" id="againBtn">再测一次　↻</button>
+        <button class="btn secondary" id="shareBtn" style="margin-left:8px">分享结果 ♡</button>
+      </section>
+    </div>
+  </section>
+  <div class="footer">仅供娱乐，不代表任何真实评价 · Made with ♡ and pink sparkles</div>
+</main>
+<script>
+const questions = [
+ {q:"朋友半天没回消息，你通常会？",a:[
+  ["先忙自己的事，晚点再说",0],["忍不住点开聊天框看几次",2],["发个表情包试探一下！",3],["开始想是不是自己哪里做错了",1]]},
+ {q:"看到喜欢的人，你会怎么表现？",a:[
+  ["淡定自然，主打一个从容",0],["嘴上装淡定，心里放烟花",2],["眼睛会不自觉跟着对方跑",3],["主动靠近，恨不得分享所有小事",3]]},
+ {q:"周末最理想的安排是？",a:[
+  ["独处充电，谁也别叫我",0],["和熟悉的人待在一起就很好",2],["出去玩！最好一整天都有人陪",3],["看心情，临时决定最快乐",1]]},
+ {q:"你在小团体里更像哪一种？",a:[
+  ["安静观察的幕后军师",0],["负责听大家讲心事的人",1],["气氛组，努力让大家开心",3],["认定一个人后就特别黏",2]]},
+ {q:"收到一句夸奖，你会？",a:[
+  ["礼貌说谢谢，内心毫无波澜",0],["表面谦虚，偷偷开心很久",2],["立刻反夸回去！",3],["反复回味这句话，嘿嘿",2]]},
+ {q:"你表达在乎的方式更接近？",a:[
+  ["记住细节，默默帮忙",0],["有事没事都想分享给对方",3],["直接说出来，喜欢就要表达",2],["想陪着对方，哪怕什么都不做",2]]},
+ {q:"计划突然被取消，你会？",a:[
+  ["正好，享受独处时间",0],["有一点失落，但很快调整",1],["疯狂可惜！我已经期待好久了",3],["立刻找替代方案，不能浪费快乐",2]]},
+ {q:"选一个最像你的表情包状态：",a:[
+  ["😌 一切尽在掌握",0],["🥺 你怎么还不理我",3],["🐶 谁来都摇尾巴（比喻）",3],["😼 我才没有在意呢",1]]}
+];
+let index=0, answers=Array(questions.length).fill(null);
+const $=id=>document.getElementById(id);
+function show(which){["start","quiz","result"].forEach(id=>$(id).classList.toggle("hidden",id!==which));}
+function renderQuestion(){
+ const item=questions[index];$("stepLabel").textContent=`QUESTION ${String(index+1).padStart(2,"0")} / ${questions.length}`;
+ const done=answers.filter(v=>v!==null).length;$("answered").textContent=`已完成 ${Math.round(done/questions.length*100)}%`;$("progress").style.width=`${(index+1)/questions.length*100}%`;
+ $("question").textContent=item.q;$("options").innerHTML="";
+ item.a.forEach((a,i)=>{const b=document.createElement("button");b.className="option"+(answers[index]===i?" selected":"");b.innerHTML=`<span class="letter">${["A","B","C","D"][i]}</span><span></span>`;b.querySelector("span:last-child").textContent=a[0];b.setAttribute("aria-pressed",answers[index]===i?"true":"false");b.onclick=()=>{answers[index]=i;renderQuestion();};$("options").appendChild(b);});
+ $("backBtn").disabled=index===0;$("backBtn").style.opacity=index===0?".45":"1";
+ $("nextBtn").disabled=answers[index]===null;$("nextBtn").textContent=index===questions.length-1?"查看结果 ♡":"下一题 →";
+}
+function finish(){
+ const total=answers.reduce((s,v,i)=>s+questions[i].a[v][1],0),score=Math.round(total/(questions.length*3)*100);
+ let r;
+ if(score>=78)r={emoji:"🐕",title:"认证快乐小狗！",intro:"你的狗狗属性已经溢出屏幕啦！",detail:"你热情、真诚，也很愿意向在乎的人表达喜欢。你像一只看到熟人就会开心的小狗——不过记得啦，喜欢别人时，也别忘记照顾自己的感受。",tags:["热情直球","分享欲满满","快乐制造机"]};
+ else if(score>=52)r={emoji:"🐩",title:"黏人小狗预备役",intro:"你有柔软又可爱的一面，只对特定的人开放。",detail:"熟悉之后的你会变得特别鲜活。你珍惜关系，也在独立和亲近之间寻找舒服的距离。无需一直表现得很懂事，你的感受同样重要。",tags:["熟人面前超可爱","温柔真诚","有一点点傲娇"]};
+ else if(score>=27)r={emoji:"🐈",title:"猫猫狗狗混合体",intro:"你可以热情，也很享受自己的小世界。",detail:"你不是时时刻刻都需要陪伴的人，但真正重视的关系，你会认真对待。你有自己的节奏，也会在安全的关系里慢慢露出可爱的一面。",tags:["自由灵魂","慢热可爱","亲疏有度"]};
+ else r={emoji:"🐱",title:"高冷猫猫派！",intro:"独立、松弛，你的可爱不需要时刻营业。",detail:"你习惯先照顾好自己的节奏，不会因为别人期待什么就勉强自己。高冷不代表不在乎，只是你表达感情的方式可能更安静。记得偶尔也给在乎的人一点信号哦。",tags:["独立自主","外冷内暖","慢慢靠近"]};
+ $("resultEmoji").textContent=r.emoji;$("resultTitle").textContent=r.title;$("score").textContent=score;$("resultIntro").textContent=r.intro;$("resultDetail").textContent=r.detail;$("resultTags").innerHTML="";
+ r.tags.forEach(t=>{const el=document.createElement("span");el.className="tag";el.textContent=t;$("resultTags").appendChild(el);});show("result");
+}
+$("startBtn").onclick=()=>{index=0;answers=Array(questions.length).fill(null);show("quiz");renderQuestion();};
+$("backBtn").onclick=()=>{if(index>0){index--;renderQuestion();}};
+$("nextBtn").onclick=()=>{if(answers[index]===null)return;if(index<questions.length-1){index++;renderQuestion();}else finish();};
+$("againBtn").onclick=()=>{index=0;answers=Array(questions.length).fill(null);show("quiz");renderQuestion();};
+$("shareBtn").onclick=async()=>{const text=`我测出了「${$("resultTitle").textContent}」！我的狗狗指数是 ${$("score").textContent}/100 🐾 你也来测测吧！`;try{if(navigator.share)await navigator.share({title:"你是不是狗狗？",text});else if(navigator.clipboard){await navigator.clipboard.writeText(text);$("shareBtn").textContent="结果已复制 ✓";setTimeout(()=>$("shareBtn").textContent="分享结果 ♡",1800);}else window.prompt("复制你的测试结果：",text);}catch(e){if(e.name!=="AbortError")window.prompt("复制你的测试结果：",text);}};
+</script>
+</body>
+</html>
